@@ -26,7 +26,12 @@ export function Login() {
       </header>
 
       <form onSubmit={handleSubmit} className="mt-15 flex flex-col gap-4">
-        <Input type="email" placeholder="E-mail" {...register("email")} />
+        <Input
+          type="email"
+          placeholder="E-mail"
+          error="Informe o e-mail"
+          {...register("email")}
+        />
         {errors.email && <span>{errors.email.message}</span>}
         <Input type="password" placeholder="Senha" {...register("password")} />
         {errors.password && <span>{errors.password.message}</span>}
