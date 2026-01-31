@@ -25,18 +25,27 @@ export function Login() {
         </p>
       </header>
 
-      <form onSubmit={handleSubmit} className="mt-15 flex flex-col gap-4">
+      <form
+        onSubmit={handleSubmit}
+        className="mt-15 flex flex-col gap-4"
+      >
         <Input
           type="email"
           placeholder="E-mail"
-          error="Informe o e-mail"
+          error={errors.email?.message}
           {...register("email")}
         />
-        {errors.email && <span>{errors.email.message}</span>}
-        <Input type="password" placeholder="Senha" {...register("password")} />
-        {errors.password && <span>{errors.password.message}</span>}
+        <Input
+          type="password"
+          placeholder="Senha"
+          error={errors.password?.message}
+          {...register("password")}
+        />
 
-        <Button type="submit" className="mt-2">
+        <Button
+          type="submit"
+          className="mt-2"
+        >
           Entrar
         </Button>
       </form>
