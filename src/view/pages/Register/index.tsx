@@ -4,7 +4,7 @@ import { Input } from "../../components/Input";
 import { useRegisterController } from "./useRegisterController";
 
 export function Register() {
-  const { errors, handleSubmit, register } = useRegisterController();
+  const { errors, handleSubmit, register, isPending } = useRegisterController();
   return (
     <>
       <header className="flex flex-col items-center gap-4 text-center">
@@ -49,6 +49,7 @@ export function Register() {
 
         <Button
           type="submit"
+          isLoading={isPending}
           className="mt-2"
         >
           Criar conta
