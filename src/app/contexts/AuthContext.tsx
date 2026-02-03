@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { createContext, useCallback, useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { LaunchScreen } from "../../view/components/LaunchScreen";
 import { localStorageKeys } from "../config/localStorageKeys";
 import { httpClient } from "../services/httpClient";
 import { usersService } from "../services/usersService";
@@ -36,7 +37,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setSignedIn(false);
   }, []);
 
-  const { isError } = useQuery({
+  const { isError, isFetching, isSuccess } = useQuery({
     enabled: !!signedIn,
     queryKey: ["users", "me"],
     queryFn: () => usersService.me(),
@@ -46,14 +47,22 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (isError) {
       toast.error("Sua sessão expirou");
+
       // eslint-disable-next-line react-hooks/set-state-in-effect
       signout();
     }
   }, [isError, signout]);
 
   return (
-    <AuthContext.Provider value={{ signedIn, signin, signout }}>
-      {children}
+    <AuthContext.Provider
+      value={{
+        signedIn: isSuccess && signedIn,
+        signin,
+        signout,
+      }}
+    >
+      <LaunchScreen isLoading={isFetching} />
+      {!isFetching && children}
     </AuthContext.Provider>
   );
 }
