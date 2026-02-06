@@ -1,6 +1,9 @@
-import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { EyeIcon } from "../../../components/icons/EyeIcon";
 import { AccountCard } from "./AccountCard";
+
+import "swiper/css";
+import { AccountSliderNavigation } from "./AccountSliderNavigation";
 
 export function Accounts() {
   return (
@@ -19,30 +22,45 @@ export function Accounts() {
       </div>
 
       <div className="flex-1 flex flex-col justify-end">
-        <div className="flex items-center justify-between">
-          <strong className="text-white tracking-[-1px] text-lg font-bold">
-            Minhas contas
-          </strong>
+        <Swiper
+          spaceBetween={16}
+          slidesPerView={2.1}
+        >
+          <div className="flex items-center justify-between">
+            <strong className="text-white tracking-[-1px] text-lg font-bold">
+              Minhas contas
+            </strong>
 
-          <div>
-            <button
-              className="py-3 pl-2.5 pr-3.5 rounded-full enabled:hover:bg-black/10 transition-colors disabled:opacity-40"
-              disabled
-            >
-              <ChevronLeftIcon className="text-white w-6 h-6" />
-            </button>
-            <button className="py-3 pl-2.5 pr-3.5 rounded-full enabled:hover:bg-black/10 transition-colors disabled:opacity-40">
-              <ChevronRightIcon className="text-white w-6 h-6" />
-            </button>
+            <AccountSliderNavigation />
           </div>
-        </div>
-        <div className="mt-4">
-          <AccountCard
-            color="#7950F2"
-            name="Nubank"
-            balance={123.34}
-          />
-        </div>
+
+          <div className="mt-4">
+            <SwiperSlide>
+              <AccountCard
+                color="#7950F2"
+                name="Nubank"
+                balance={123.34}
+                type="CASH"
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <AccountCard
+                color="#333"
+                name="xp"
+                balance={12.34}
+                type="INVESTMENT"
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <AccountCard
+                color="#f2f"
+                name="Carteira"
+                balance={1244.34}
+                type="CHECKING"
+              />
+            </SwiperSlide>
+          </div>
+        </Swiper>
       </div>
     </div>
   );
