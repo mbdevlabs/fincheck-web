@@ -36,8 +36,12 @@ export function Accounts() {
             </button>
           </div>
         </div>
-        <div>
-          <AccountCard />
+        <div className="mt-4">
+          <AccountCard
+            color="#7950F2"
+            name="Nubank"
+            balance={123.34}
+          />
         </div>
       </div>
     </div>
