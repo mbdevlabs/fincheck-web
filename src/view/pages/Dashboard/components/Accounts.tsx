@@ -22,19 +22,22 @@ export function Accounts() {
       </div>
 
       <div className="flex-1 flex flex-col justify-end">
-        <Swiper
-          spaceBetween={16}
-          slidesPerView={2.1}
-        >
-          <div className="flex items-center justify-between">
-            <strong className="text-white tracking-[-1px] text-lg font-bold">
-              Minhas contas
-            </strong>
+        <div>
+          <Swiper
+            spaceBetween={16}
+            slidesPerView={2}
+          >
+            <div
+              className="flex items-center justify-between mb-4"
+              slot="container-start"
+            >
+              <strong className="text-white tracking-[-1px] text-lg font-bold">
+                Minhas contas
+              </strong>
 
-            <AccountSliderNavigation />
-          </div>
+              <AccountSliderNavigation />
+            </div>
 
-          <div className="mt-4">
             <SwiperSlide>
               <AccountCard
                 color="#7950F2"
@@ -59,8 +62,8 @@ export function Accounts() {
                 type="CHECKING"
               />
             </SwiperSlide>
-          </div>
-        </Swiper>
+          </Swiper>
+        </div>
       </div>
     </div>
   );
