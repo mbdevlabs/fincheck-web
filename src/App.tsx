@@ -21,7 +21,9 @@ export function App() {
         <Toaster />
       </AuthProvider>
 
-      {import.meta.env.DEV && <ReactQueryDevtools />}
+      {import.meta.env.DEV && (
+        <ReactQueryDevtools buttonPosition="bottom-left" />
+      )}
     </QueryClientProvider>
   );
 }
