@@ -1,73 +1,72 @@
-# React + TypeScript + Vite
+# Fincheck — Web
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+App de financas pessoais para controlar contas bancarias, receitas e despesas.
 
-Currently, two official plugins are available:
+![React](https://img.shields.io/badge/-React_19-61DAFB?style=flat-square&logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/-TailwindCSS_4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
+![Vite](https://img.shields.io/badge/-Vite-646CFF?style=flat-square&logo=vite&logoColor=white)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<!-- ![Screenshot](.github/screenshot.png) -->
 
-## React Compiler
+## Funcionalidades
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+- Autenticacao (signup/signin) com JWT
+- Dashboard com visao geral das financas
+- Gerenciar multiplas contas bancarias com saldo
+- Registrar receitas e despesas com categorias
+- Filtrar transacoes por mes, ano, conta e tipo
+- Layout responsivo (desktop e mobile)
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+| Tecnologia | Uso |
+|------------|-----|
+| React 19 | UI |
+| TypeScript | Tipagem |
+| TailwindCSS 4 | Estilizacao |
+| Vite | Build/dev server |
+| React Query (TanStack) | Estado do servidor |
+| React Hook Form + Zod | Formularios e validacao |
+| React Router DOM v7 | Rotas |
+| Radix UI + Headless UI | Componentes acessiveis |
+| Axios | Cliente HTTP |
+| Swiper | Slider de contas bancarias |
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Como Rodar
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+**Pre-requisitos:** Node.js 18+ e [Fincheck API](https://github.com/mbdevlabs/fincheck-api) rodando.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+git clone https://github.com/mbdevlabs/fincheck-web.git
+cd fincheck-web
+npm install
+cp .env.example .env   # configurar URL da API
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Acesse `http://localhost:5173`.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Estrutura
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+src/
+  app/
+    config/        → Constantes e configuracao
+    contexts/      → AuthContext (autenticacao)
+    hooks/         → useAuth, useWindowWidth
+    services/      → Camada HTTP (Axios)
+    utils/         → cn(), formatCurrency()
+  view/
+    components/    → Componentes reutilizaveis (Button, Logo, icons)
+    layouts/       → Layouts de pagina
+    pages/
+      Dashboard/   → Tela principal (contas + transacoes)
+      Login/       → Tela de login
+      Register/    → Tela de cadastro
+  Router/          → Configuracao de rotas
+```
+
+## Relacionados
+
+- [Fincheck API](https://github.com/mbdevlabs/fincheck-api) — Backend REST
