@@ -35,17 +35,28 @@ App de financas pessoais para controlar contas bancarias, receitas e despesas.
 
 ## Como Rodar
 
-**Pre-requisitos:** Node.js 18+ e [Fincheck API](https://github.com/mbdevlabs/fincheck-api) rodando.
+**Pre-requisitos:** Node.js 22+ com pnpm e [Fincheck API](https://github.com/mbdevlabs/fincheck-api) rodando.
 
 ```bash
 git clone https://github.com/mbdevlabs/fincheck-web.git
 cd fincheck-web
-npm install
+pnpm install
 cp .env.example .env   # configurar URL da API
-npm run dev
+pnpm dev
 ```
 
 Acesse `http://localhost:5173`.
+
+## CI/CD
+
+- **CI**: GitHub Actions — lint, typecheck e testes a cada push/PR na `main`
+- **CD**: AWS CodeBuild — build, deploy para S3 e invalidacao do CloudFront
+
+| Servico | Uso |
+|---------|-----|
+| AWS CodeBuild | Build e deploy automatizado |
+| AWS S3 | Hospedagem dos arquivos estaticos |
+| AWS CloudFront | CDN e distribuicao |
 
 ## Estrutura
 
@@ -66,6 +77,12 @@ src/
       Register/    → Tela de cadastro
   Router/          → Configuracao de rotas
 ```
+
+## Variaveis de Ambiente
+
+| Variavel | Descricao |
+|----------|-----------|
+| `VITE_API_URL` | URL da API do Fincheck |
 
 ## Relacionados
 

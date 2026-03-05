@@ -13,6 +13,8 @@ pnpm dev      # Start development server (opens browser automatically)
 pnpm build    # Type-check with tsc and build for production
 pnpm lint     # Run ESLint
 pnpm preview  # Preview production build locally
+pnpm ci:lint  # Check formatting with Prettier (used in CI)
+pnpm typecheck # Type-check without emitting (used in CI)
 ```
 
 ## Tech Stack
@@ -21,6 +23,12 @@ pnpm preview  # Preview production build locally
 - **Build**: Vite 7 with SWC for Fast Refresh
 - **Styling**: Tailwind CSS v4 (via @tailwindcss/vite plugin)
 - **Language**: TypeScript with strict mode enabled
+- **Package Manager**: pnpm
+
+## CI/CD
+
+- **CI**: GitHub Actions (`.github/workflows/ci.yml`) — lint, typecheck, tests on push/PR to main
+- **CD**: AWS CodeBuild (`buildspec.yml`) — build, deploy to S3, invalidate CloudFront
 
 ## Architecture
 
