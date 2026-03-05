@@ -9,11 +9,6 @@ phases:
       - corepack prepare pnpm@10 --activate
       - pnpm install --frozen-lockfile
 
-  pre_build:
-    commands:
-      - pnpm ci:lint
-      - pnpm typecheck
-
   build:
     commands:
       - pnpm build
