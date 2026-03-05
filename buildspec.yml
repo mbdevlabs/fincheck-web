@@ -20,6 +20,10 @@ phases:
 
   post_build:
     commands:
+      - |
+        TODAY=$(date -u +%Y-%m-%dT00:00:00Z)
+        TODAY_BUILDS=$(aws codebuild batch-get-builds --ids $(aws codebuild list-builds-for-project --project-name fincheck-web --region us-east-1 --query "ids[0:10]" --output text) --region us-east-1 --query "length(builds[?startTime>=\`$TODAY\`])" --output text)
+        if [ "$TODAY_BUILDS" -gt 2 ]; then exit 0; fi
       - aws s3 sync dist/ s3://$S3_BUCKET --delete
       - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
 
