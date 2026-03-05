@@ -20,8 +20,8 @@ phases:
 
   post_build:
     commands:
-      - aws s3 sync dist/ s3://mb-fincheck --delete
-      - aws cloudfront create-invalidation --distribution-id E1OKGBWHW86H6X --paths "/*"
+      - aws s3 sync dist/ s3://$S3_BUCKET --delete
+      - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
 
 cache:
   paths:
