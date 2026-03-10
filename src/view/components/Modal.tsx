@@ -23,7 +23,6 @@ export function Modal({
       open={open}
       onOpenChange={onClose}
     >
-      <Dialog.Trigger />
       <Dialog.Portal>
         <Dialog.Overlay
           className={cn(
@@ -37,6 +36,7 @@ export function Modal({
             "data-[state=open]:animate-content-show",
           )}
         >
+          <Dialog.Title />
           <header className="h-12 flex items-center justify-between text-gray-800">
             <button
               onClick={onClose}
